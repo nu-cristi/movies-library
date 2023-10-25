@@ -1,11 +1,34 @@
-import { useEffect, useState } from "react";
-import { useFetch } from "../../hooks/useFetch";
+import { useState } from "react";
+import MovieCategories from "../../components/MovieCategories/MovieCategories";
+
+const requests = {
+  topRatedMoviesRequest: "https://api.themoviedb.org/3/movie/top_rated",
+  popularMoviesRequest: "https://api.themoviedb.org/3/movie/popular",
+  upcomingMoviesRequest: "https://api.themoviedb.org/3/movie/upcoming",
+};
 
 export default function Home() {
-  const [popularMovies, setPopularMovies] = useState();
-  const data = useFetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=1`
+  const [isLoading, setIsLoading] = useState(true);
+  const movieProps = [
+    {
+      categoryTitle: "Top Rated",
+      url: requests.topRatedMoviesRequest,
+    },
+    {
+      categoryTitle: "Popular",
+      url: requests.popularMoviesRequest,
+    },
+    {
+      categoryTitle: "Upcoming",
+      url: requests.upcomingMoviesRequest,
+    },
+  ];
+
+  return (
+    <div>
+      {movieProps.map((props, index) => (
+        <MovieCategories key={index} props={props} />
+      ))}
+    </div>
   );
-  console.log(data);
-  return <div></div>;
 }
