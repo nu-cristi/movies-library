@@ -1,0 +1,34 @@
+.graveyard-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.graveyard-footer > svg {
+  height: 220px;
+  stroke: #a5ef8b;
+}
+
+.bats-header {
+  overflow: hidden;
+}
+
+.bats-header > svg {
+  height: 100px;
+  stroke: #a5ef8b;
+}
+
+.categories {
+  display: flex;
+  justify-content: flex-start;
+  gap: 3%;
+  margin-left: 2%;
+}
+
+.categories > div {
+  padding: 10px 20px;
+  background-color: var(--orange);
+  border-radius: 10px;
+  cursor: pointer;
+}

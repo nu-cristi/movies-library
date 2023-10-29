@@ -1,0 +1,30 @@
+.movies-container {
+  padding:2%;
+}
+
+.movies-grid {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, 185px);
+  justify-content: center;
+}
+
+.category-title {
+  padding: 10px 20px;
+  background-color: var(--orange);
+  border-radius: 10px;
+}
+
+@media only screen and (min-width: 440px) and (max-width: 1024px) {
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, 180px);
+    grid-gap: 10px 70px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .movies-grid {
+    grid-gap: 10px 65px;
+    grid-template-columns: repeat(auto-fill, 180px);
+  }
+}
