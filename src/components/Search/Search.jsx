@@ -3,7 +3,7 @@ import { MovieContext } from "../../App";
 import { BASE_URL } from "../../pages/Home/Home";
 import axios from "axios";
 import { ReactComponent as BonesSvg } from "../../icons/bones.svg";
-import './Search.css';
+import "./Search.css";
 
 const SEARCH_URL = "https://api.themoviedb.org/3/search/movie?query=";
 
@@ -15,13 +15,13 @@ export default function Search() {
 
   useEffect(() => {
     async function getSearchMovies() {
-        if(!searchValue){
-            searchUrl = BASE_URL + `top_rated?api_key=${process.env.REACT_APP_API_KEY}`
-        }
+      if (!searchValue) {
+        searchUrl =
+          BASE_URL + `top_rated?api_key=${process.env.REACT_APP_API_KEY}`;
+      }
       try {
         const response = await axios.get(searchUrl);
         const { data } = response;
-        console.log(data);
         setMovies(data.results);
       } catch (error) {
         console.log(error);
@@ -45,9 +45,8 @@ export default function Search() {
         value={searchValue}
       ></input>
       <div className="reset-search">
-      <BonesSvg />
+        <BonesSvg onClick={() => setSearchValue("")} />
       </div>
-
     </div>
   );
 }

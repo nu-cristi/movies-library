@@ -1,24 +1,33 @@
-.reset-search{
-    position: absolute;
-    top: 50%;
-    right:0;
-    transform: translate(-50%, -50%);
+.reset-search {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
 }
 
-.search-container{
-    position: relative;
-    width: 40%;
+.search-container {
+  position: relative;
+  width: 90%;
+  margin: auto;
 }
 
-.reset-search > svg{
-    width: 20px;
-
-    height: 20px;
+.reset-search > svg {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
-input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-  }
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+@media only screen and (min-width: 440px) and (max-width: 1024px) {
+}
+
+@media only screen and (min-width: 1025px) {
+
+}

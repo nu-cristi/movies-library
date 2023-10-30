@@ -9,8 +9,13 @@ export default function App() {
     setMovies: () => {},
   });
 
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
+
+  const addFavoriteMovie = (movie) =>
+  setFavoriteMovies((prevState) => [...prevState, movie]);
+
   return (
-    <MovieContext.Provider value={{movies, setMovies}}>
+    <MovieContext.Provider value={{ movies, setMovies,favoriteMovies, addFavoriteMovie }}>
       <Home />
     </MovieContext.Provider>
   );
