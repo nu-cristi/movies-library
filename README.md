@@ -1,6 +1,7 @@
 # Movies Library - TMDB API
 
 This is a simple movies library app where you can see details about movies in real time and also search and add your favorite movies to your own list. This app was developed using ReactJS for the client side and the TMDB API to manage the data.
+The project was deployed on Netlify at [Movies Library](https://653fab0d07998317e9b2f462--velvety-jelly-0d8617.netlify.app/)
 
 ## Install and run the project
 
