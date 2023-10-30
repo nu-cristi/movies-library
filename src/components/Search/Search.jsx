@@ -4,7 +4,9 @@ import { BASE_URL } from "../../pages/Home/Home";
 import axios from "axios";
 import { ReactComponent as BonesSvg } from "../../icons/bones.svg";
 import "./Search.css";
+import { toast } from "react-toastify";
 
+//TMDB api base url for querying used for search
 const SEARCH_URL = "https://api.themoviedb.org/3/search/movie?query=";
 
 export default function Search() {
@@ -15,6 +17,7 @@ export default function Search() {
 
   useEffect(() => {
     async function getSearchMovies() {
+      //Fetch category data when search is empty
       if (!searchValue) {
         searchUrl =
           BASE_URL + `top_rated?api_key=${process.env.REACT_APP_API_KEY}`;
@@ -25,17 +28,23 @@ export default function Search() {
         setMovies(data.results);
       } catch (error) {
         console.log(error);
+        toast.error("An error has occured", {
+          position: "top-right",
+          autoClose: 3000,
+          closeOnClick: true,
+          draggable: true,
+          theme: "dark",
+        });
       }
     }
     getSearchMovies();
-    return () => {};
   }, [searchValue]);
 
   function handleSearch(e) {
     e.preventDefault();
-    console.log(e.target.value);
     setSearchValue(e.target.value);
   }
+
   return (
     <div className="search-container">
       <input
@@ -45,6 +54,7 @@ export default function Search() {
         value={searchValue}
       ></input>
       <div className="reset-search">
+        {/* Clear search field */}
         <BonesSvg onClick={() => setSearchValue("")} />
       </div>
     </div>

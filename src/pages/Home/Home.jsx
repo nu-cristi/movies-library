@@ -8,12 +8,16 @@ import "./Home.css";
 import Search from "../../components/Search/Search";
 import axios from "axios";
 import useScreenSize from "../../hooks/useScreenSize";
+import Spinner from "../../components/Spinner/Spinner";
+import { toast } from "react-toastify";
 
+//TMDB Api base url used for fetching data
 export const BASE_URL = "https://api.themoviedb.org/3/movie/";
 
 export default function Home() {
+  // Hook used to calculate the size of the screen
   const screenSize = useScreenSize();
-  const { movies, setMovies } = useContext(MovieContext);
+  const { setMovies, isLoading, setIsLoading } = useContext(MovieContext);
   const [category, setCategory] = useState({
     category: "top_rated",
     name: "Top Rated",
@@ -27,7 +31,9 @@ export default function Home() {
     { category: "upcoming", name: "Upcoming" },
   ];
 
+  //Handle for category change
   function handleClick(e) {
+    setFavoriteClicked(false);
     setIsClicked(false);
     setCategory({
       category: e.target.dataset.value,
@@ -35,6 +41,7 @@ export default function Home() {
     });
   }
 
+  //Fetch movies
   useEffect(() => {
     async function getMovies() {
       try {
@@ -44,12 +51,21 @@ export default function Home() {
         );
         const { data } = response;
         setMovies(data.results);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
       } catch (error) {
+        toast.error("An error has occured", {
+          position: "top-right",
+          autoClose: 3000,
+          closeOnClick: true,
+          draggable: true,
+          theme: "dark",
+        });
         console.log(error);
       }
     }
     getMovies();
-    return () => {};
   }, [category.category]);
 
   return (
@@ -59,8 +75,14 @@ export default function Home() {
       </div>
       <div className="filter-container">
         <Search />
-        <div className="favorites-button" onClick={()=>setFavoriteClicked(true)}>Favorites</div>
+        <div
+          className="favorites-button"
+          onClick={() => setFavoriteClicked(true)}
+        >
+          Favorites
+        </div>
       </div>
+      {/* Conditional render based on screen size */}
       <div className="categories">
         {screenSize.width < 798 ? (
           <div>
@@ -95,7 +117,13 @@ export default function Home() {
           </>
         )}
       </div>
-      <MoviesList props={favoriteClicked}/>
+      {!isLoading ? (
+        <MoviesList props={favoriteClicked} />
+      ) : (
+        <div className="position-center">
+          <Spinner />
+        </div>
+      )}
       <div className="graveyard-footer">
         <GraveyardSvg />
       </div>

@@ -1,6 +1,3 @@
-.container {
-}
-
 .graveyard-footer {
   position: sticky;
   bottom: 0;
@@ -15,6 +12,8 @@
 
 .bats-header {
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .bats-header > svg {
@@ -78,6 +77,12 @@
 .categories-submenu > div {
   padding: 1%;
   text-decoration: underline;
+}
+
+.position-center {
+  display: flex;
+  justify-content: center;
+  margin: 180px 0;
 }
 
 @media only screen and (min-width: 798px) {
